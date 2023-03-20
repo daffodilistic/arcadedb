@@ -116,6 +116,12 @@ function exportGraph(format){
       var imgBlob = globalCy.jpg( {"output": "blob"} );
       saveAs( imgBlob, 'arcadedb-graph.jpg' );
       break;
+
+    case "svg":
+        var svgData = globalCy.svg();
+        var imgBlob = new Blob([svgData], {type:"image/svg+xml;charset=utf-8"});
+        saveAs( imgBlob, 'arcadedb-graph.svg' );
+        break;
   }
 }
 
