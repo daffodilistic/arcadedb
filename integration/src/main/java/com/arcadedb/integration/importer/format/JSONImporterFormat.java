@@ -310,6 +310,11 @@ public class JSONImporterFormat implements FormatImporter {
       final String id = mapping.getString("@id");
       final Object idValue = getAttribute(attributes, id);
 
+      if (id.startsWith("../")) {
+        final String key = mapping.getString("@idKey");
+        attributes.map.put(key, getAttribute(attributes, id));
+      }
+
       Property prop = type.getPropertyIfExists(id);
       if (prop == null) {
         if (idValue == null) {
